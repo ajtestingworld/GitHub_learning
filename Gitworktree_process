@@ -1,0 +1,271 @@
+Your project structure is:
+
+PythonPrograms/
+│
+├── BasicPrograms/
+│   ├── HelloWorld.py
+│   └── readValuesfromCommandLine.py
+│
+├── StringOperations/
+│   ├── Fstrings.py
+│   └── StringOperations.py
+│
+└── main.py
+
+If PythonPrograms is your Git repository, then you should not create the worktree inside this folder.
+
+Recommended Structure
+
+Suppose your repository is:
+
+E:\
+└── AUTOMATION_FRAMEWORKS\
+    ├── PythonPrograms       ← Main Git repository
+    ├── python1              ← Worktree 1
+    ├── python2              ← Worktree 2
+    └── python3              ← Worktree 3
+Step 1: Open Terminal in PythonPrograms
+cd E:\AUTOMATION_FRAMEWORKS\PythonPrograms
+Step 2: Create a new worktree
+git worktree add -b feature/python1 ..\python1
+
+Here:
+
+feature/python1 → New branch name
+..\python1 → Creates a folder named python1 alongside PythonPrograms
+
+After running the command:
+
+E:\
+└── AUTOMATION_FRAMEWORKS\
+    ├── PythonPrograms
+    ├── python1
+
+Open the python1 folder in PyCharm or VS Code, and you'll have another working copy of the repository on the feature/python1 branch.
+
+Create another worktree
+git worktree add -b feature/python2 ..\python2
+
+Now your structure becomes:
+
+E:\
+└── AUTOMATION_FRAMEWORKS\
+    ├── PythonPrograms      (main branch)
+    ├── python1             (feature/python1)
+    └── python2             (feature/python2)
+Verify
+
+Run:
+
+git worktree list
+
+Example output:
+
+E:/AUTOMATION_FRAMEWORKS/PythonPrograms  a1b2c3d [main]
+E:/AUTOMATION_FRAMEWORKS/python1         e4f5g6h [feature/python1]
+E:/AUTOMATION_FRAMEWORKS/python2         i7j8k9l [feature/python2]
+
+
+After Git Worktree
+
+Instead of switching branches, open each worktree as a separate project.
+
+Suppose your folders are:
+
+E:\AUTOMATION_FRAMEWORKS\
+│
+├── PythonPrograms      ← main
+├── python1             ← feature/python1
+└── python2             ← feature/python2
+Open all three folders
+
+Open three IDE windows.
+
+Window 1
+PythonPrograms
+
+Current branch:
+
+main
+Window 2
+python1
+
+Current branch:
+
+feature/python1
+
+Verify:
+
+git branch
+
+Output:
+
+* feature/python1
+Window 3
+python2
+
+Current branch:
+
+feature/python2
+
+Verify:
+
+git branch
+
+Output:
+
+* feature/python2
+Example
+Window 1 (main)
+
+Leave it untouched.
+
+main.py
+Window 2 (feature/python1)
+
+Create
+
+BasicPrograms/
+
+Add
+
+def add(a, b):
+    return a + b
+
+Commit
+
+git add .
+git commit -m "Added add() function"
+Window 3 (feature/python2)
+
+Create
+
+FileOperations.py
+with open("sample.txt") as f:
+    print(f.read())
+
+Commit
+
+git add .
+git commit -m "Added File Operations"
+
+Notice something amazing...
+
+Both branches are running simultaneously.
+
+You never executed
+
+git switch
+
+or
+
+git checkout
+
+even once.
+
+Real-world Example
+
+Imagine you're working in a company.
+
+Task 1
+
+JIRA-101
+Implement Login
+
+Work inside
+
+feature/login
+
+Task 2
+
+JIRA-205
+Fix Payment Bug
+
+Work inside
+
+bugfix/payment
+
+Task 3
+
+Release Support
+
+Work inside
+
+release/v1.5
+
+Open three VS Code or PyCharm windows.
+
+VS Code 1 → Login Feature
+
+VS Code 2 → Payment Bug
+
+VS Code 3 → Release Branch
+
+You can work on all three at the same time.
+
+Verify Branch in Each Window
+
+Run
+
+git status
+
+Example
+
+Window 1
+
+On branch main
+
+Window 2
+
+On branch feature/python1
+
+Window 3
+
+On branch feature/python2
+
+Each terminal is completely independent.
+
+Let's do a small exercise
+In feature/python1
+
+Create:
+
+MathOperations.py
+def square(n):
+    return n * n
+
+Commit it.
+
+In feature/python2
+
+Create:
+
+StringUtilities.py
+def reverse(text):
+    return text[::-1]
+
+Commit it.
+
+Now run:
+
+git log --oneline --graph --all
+
+You'll see both branches have different commit histories, proving they're developing independently.
+
+Think of it like this
+                    Git Repository
+                          │
+        ┌─────────────────┼─────────────────┐
+        │                 │                 │
+        ▼                 ▼                 ▼
+   PythonPrograms      python1          python2
+      (main)      (feature/python1) (feature/python2)
+
+      IDE 1            IDE 2             IDE 3
+      Terminal 1       Terminal 2        Terminal 3
+
+     Build/Test       Build/Test        Build/Test
+
+This is the primary advantage of Git Worktrees: each worktree is an independent working directory with its own checked-out branch, 
+so you can edit, run, test, commit, and push changes in parallel without ever switching branches.
+
