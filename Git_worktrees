@@ -1,0 +1,16 @@
+
+Defination 1:
+Git Worktree is a Git feature that enables a single Git repository to have multiple working directories (called worktrees). 
+Each worktree can have a different branch checked out, allowing developers to work on multiple branches simultaneously without 
+cloning the repository multiple times or repeatedly stashing and switching changes.
+
+Short Definition (Interview)
+
+Git Worktree allows multiple working directories to share a single Git repository, enabling you to work on multiple branches at the same time without creating multiple clones.
+
+
+One-Line Definition
+
+Git Worktree is a Git feature that allows multiple branches to be checked out simultaneously in separate working directories from a single repository.
+
+
