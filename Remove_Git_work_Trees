@@ -1,0 +1,32 @@
+Yes. Once you’re completely done with a Git worktree, you can safely delete it—as long as you don’t have uncommitted work you still need.
+
+If you’re using Git worktrees:
+
+git worktree list
+
+Then remove the completed worktree:
+
+git worktree remove <path-to-worktree>
+
+For example:
+
+git worktree remove ../my-feature
+Important
+
+Deleting the worktree does not delete the branch. The branch remains available in your main repository.
+
+If you also want to delete the branch after merging:
+
+git branch -d feature/my-feature
+
+If the branch has not been merged and you're sure you don't need it:
+
+git branch -D feature/my-feature
+
+A typical cleanup flow is:
+
+git worktree list
+git worktree remove ../my-feature
+git branch -d feature/my-feature
+
+So yes—after the PR is merged and you no longer need that working directory, removing the worktree is a good cleanup practice.
