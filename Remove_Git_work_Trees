@@ -30,3 +30,24 @@ git worktree remove ../my-feature
 git branch -d feature/my-feature
 
 So yes—after the PR is merged and you no longer need that working directory, removing the worktree is a good cleanup practice.
+
+If you see changes that you don't need, you can remove the worktree with:
+
+cd E:\AUTOMATION_FRAMEWORKS\PythonProgrames
+git worktree remove --force E:/AUTOMATION_FRAMEWORKS/python1
+
+
+2. If the feature branch is already merged
+
+Check:
+
+git branch --merged
+
+If you see:
+
+feature/python1
+
+then you can delete the branch:
+
+git branch -d feature/python1
+
